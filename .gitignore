@@ -1,0 +1,20 @@
+config.json
+# Ignore the virtual environment folder
+playsong_/
+
+# Ignore PyInstaller build and dist folders
+build/
+dist/
+
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+
+# Ignore environment variables or secrets
+.env

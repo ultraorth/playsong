@@ -1,9 +1,16 @@
 VERSION = "1.0.0"
+
+import json
 import webbrowser
 import argparse
 from googleapiclient.discovery import build
 
-API_KEY = "AIzaSyBUX24jWciPri05mO_i7DlvjA5BlfV7SNo"
+with open("config.json", "r") as f:
+    config = json.load(f)
+
+API_KEY = config.get("YOUTUBE_API_KEY")
+if not API_KEY:
+    raise ValueError("YOUTUBE_API_KEY not found in config.json.")
 
 def get_youtube_video_url(song_name):
     #API client
