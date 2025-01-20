@@ -102,8 +102,10 @@ def get_youtube_video_url(song_name):
 def main():
     #parser
     parser = argparse.ArgumentParser(description="Play song on Youtube.")
-    parser.add_argument("command", choices=["playsong", "play"], help="Command to execute")
-    parser.add_argument("song", nargs="+", help="Name of the song to play")
+    '''
+    parser.add_argument("command", nargs="?", choices=["playsong", "play"], help="Command to execute")
+    '''
+    parser.add_argument("song", nargs="*", help="Name of the song to play")
     parser.add_argument("--version", action="version", version=f"playsong v{VERSION}")
     parser.add_argument("--check-update", action="store_true", help="Check for updates")
     parser.add_argument("--upgrade", action="store_true", help="Upgrade to the latest version.")
@@ -114,6 +116,10 @@ def main():
         return
     if args.upgrade:
         upgrade_app(VERSION)
+        return
+    
+    if not args.song:
+        parser.print_help()
         return
     
     song_name = " ".join(args.song)
