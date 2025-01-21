@@ -8,8 +8,18 @@ import os
 import sys
 import shutil
 
-with open("config.json", "r") as f:
-    config = json.load(f)
+
+app_dir = os.path.dirname(sys.executable)
+
+config_path = os.path.join(app_dir, "config.json")
+
+try:
+    with open(config_path, "r") as f:
+        config = json.load(f)
+except FileNotFoundError:
+    print(f"Error: config.json not found in {app_dir}.")
+    print("Please make sure the config.json file is in the same directory as the executable.")
+    sys.exit(1)
 
 API_KEY = config.get("YOUTUBE_API_KEY")
 if not API_KEY:
